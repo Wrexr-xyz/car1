@@ -16,33 +16,27 @@
     },
     "development": {
       "name": "development",
-      "command": "npm run development",
-      "runAtStart": false
+      "command": "npm run development"
     },
     "watch": {
       "name": "watch",
-      "command": "npm run watch",
-      "runAtStart": false
+      "command": "npm run watch"
     },
     "watch-poll": {
       "name": "watch-poll",
-      "command": "npm run watch-poll",
-      "runAtStart": false
+      "command": "npm run watch-poll"
     },
     "hot": {
       "name": "hot",
-      "command": "npm run hot",
-      "runAtStart": false
+      "command": "npm run hot"
     },
     "prod": {
       "name": "prod",
-      "command": "npm run prod",
-      "runAtStart": false
+      "command": "npm run prod"
     },
     "production": {
       "name": "production",
-      "command": "npm run production",
-      "runAtStart": false
+      "command": "npm run production"
     }
   }
 }
