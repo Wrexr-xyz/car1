@@ -1,23 +1,25 @@
-name: Deploy Application
+name: DeployApplication
 
 on:
-  push:
-    branches: [ master ]
+  pull_request:
+    branches:
+      - master
 
-jobs:
-  create-deployment-artifacts:
-    name: Create deployment artifacts
+
+jobs: 
+  DeployApplication:
+    name: Run DeployApplication
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-  steps:
-  - uses: actions/checkout@v3
-  - name: Compile CSS and Javascript
-    run: |
-      npm ci
-      npm run prod
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+      
+      - name: Run composer
+        run:  composer install --no-interaction
 
-  - name: Configure PHP 8.0
-    uses: shivammathur/setup-php@master
-    with:
-      php-version: 8.0
-      extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml
+      - name: Run test suite
+        run: php artisan test
