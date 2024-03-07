@@ -2,17 +2,22 @@ name: Deploy Application
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
   create-deployment-artifacts:
     name: Create deployment artifacts
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
 
-      - name: Compile CSS and Javascript
-        run: |
-          npm install
-          npm run prod
+  steps:
+  - uses: actions/checkout@v3
+  - name: Compile CSS and Javascript
+    run: |
+      npm ci
+      npm run prod
+
+  - name: Configure PHP 8.0
+    uses: shivammathur/setup-php@master
+    with:
+      php-version: 8.0
+      extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml
